@@ -22,8 +22,6 @@ import org.hibernate.criterion.Restrictions;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import escritoriovirtualalabastrum.cron.GerenciadorDeRotinas;
-import escritoriovirtualalabastrum.modelo.Configuracao;
 import escritoriovirtualalabastrum.util.Util;
 import escritoriovirtualalabastrum.util.UtilReflection;
 
@@ -53,8 +51,6 @@ public class HibernateUtil {
 		if (sessionFactory == null) {
 
 			reiniciarSessionFactory();
-
-			GerenciadorDeRotinas.iniciarRotinas();
 		}
 	}
 
@@ -379,7 +375,7 @@ public class HibernateUtil {
 		Long quantidadeRegistros = (Long) criteria.uniqueResult();
 
 		criteria = gerarFiltros(filtro, matchMode);
-		Integer quantidadeDeRegistrosPorPagina = Integer.valueOf(new Configuracao().retornarConfiguracao("quantidadeRegistrosPorPagina"));
+		Integer quantidadeDeRegistrosPorPagina = 10;
 		if (pagina == null) {
 			pagina = 1;
 		}

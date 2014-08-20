@@ -7,9 +7,9 @@
 <session-factory>
 	
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/escritoriovirtualalabastrum</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/troca</property>
+		<property name="hibernate.connection.username">hanzchucrute</property>
+		<property name="hibernate.connection.password">war1942</property>
 		<property name="show_sql">false</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -22,23 +22,7 @@
 		<property name="hibernate.c3p0.max_statements">50</property>
 		<property name="hibernate.c3p0.idle_test_period">600</property>
       
-		<mapping class="escritoriovirtualalabastrum.modelo.Usuario" />
-		<mapping class="escritoriovirtualalabastrum.modelo.InformacoesFixasUsuario" />
-		<mapping class="escritoriovirtualalabastrum.modelo.Configuracao" />
-		<mapping class="escritoriovirtualalabastrum.modelo.InformacoesUltimaAtualizacao" />
-		<mapping class="escritoriovirtualalabastrum.modelo.Pontuacao" />
-		<mapping class="escritoriovirtualalabastrum.modelo.Produto" />
-		<mapping class="escritoriovirtualalabastrum.modelo.Categoria" />
-		<mapping class="escritoriovirtualalabastrum.modelo.CentroDistribuicao" />
-		<mapping class="escritoriovirtualalabastrum.modelo.ControlePedido" />
-		<mapping class="escritoriovirtualalabastrum.modelo.HistoricoAcesso" />
-		<mapping class="escritoriovirtualalabastrum.modelo.PreCadastro" />
-		<mapping class="escritoriovirtualalabastrum.modelo.FixoIngresso" />
-		<mapping class="escritoriovirtualalabastrum.modelo.HistoricoKit" />
-		<mapping class="escritoriovirtualalabastrum.modelo.PorcentagemIngresso" />
-		<mapping class="escritoriovirtualalabastrum.modelo.InformacoesGeraisCalculoBonificacaoRede" />
-		<mapping class="escritoriovirtualalabastrum.modelo.BonificacaoRede" />
-		<mapping class="escritoriovirtualalabastrum.modelo.AutorizacaoAtivacaoAutomatica" />
+		<mapping class="troca.modelo.Usuario" />
 
 </session-factory>
 </hibernate-configuration>
