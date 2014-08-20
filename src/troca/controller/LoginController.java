@@ -6,6 +6,7 @@ import troca.anotacoes.Public;
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Usuario;
 import troca.sessao.SessaoUsuario;
+import troca.util.Util;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -25,6 +26,44 @@ public class LoginController {
 		this.sessaoUsuario = sessaoUsuario;
 		this.validator = validator;
 		this.hibernateUtil = hibernateUtil;
+	}
+	
+	@Public
+	public void criar(Usuario usuario){
+		
+		validarPreenchimento(usuario);
+		validarEmailExistente(usuario);
+		
+		this.hibernateUtil.salvarOuAtualizar(usuario);
+	}
+
+	private void validarPreenchimento(Usuario usuario) {
+		
+		if(Util.vazio(usuario.getEmail())){
+			validator.add(new ValidationMessage("Preencha o campo email", "Erro"));
+		}
+		
+		if(Util.vazio(usuario.getNome())){
+			validator.add(new ValidationMessage("Preencha o campo nome", "Erro"));
+		}
+		
+		if(Util.vazio(usuario.getSenha())){
+			validator.add(new ValidationMessage("Preencha o campo senha", "Erro"));
+		}
+		
+		validator.onErrorRedirectTo(this).telaLogin();
+	}
+	
+	public void validarEmailExistente(Usuario usuario){
+		
+		Usuario usuarioFiltro = new Usuario();
+		usuarioFiltro.setEmail(usuario.getEmail());
+		
+		if(this.hibernateUtil.contar(usuarioFiltro, MatchMode.EXACT) > 0){
+			validator.add(new ValidationMessage("Já existe um usuário com este email cadastrado", "Validacao"));
+		}
+		
+		validator.onErrorRedirectTo(this).telaLogin();		
 	}
 
 	@Public
