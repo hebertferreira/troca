@@ -2,3 +2,14 @@ body{
 	background-color: gray;
 }
 
+.div-logar{
+	border: 1px solid white;
+	width: 350px;
+}
+
+.div-cadastrar{
+	border: 1px solid white;
+	margin: left;
+	width: 350px;
+}
+

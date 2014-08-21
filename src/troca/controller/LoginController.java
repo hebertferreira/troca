@@ -6,6 +6,7 @@ import troca.anotacoes.Public;
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Usuario;
 import troca.sessao.SessaoUsuario;
+import troca.util.GeradorDeMd5;
 import troca.util.Util;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -27,43 +28,49 @@ public class LoginController {
 		this.validator = validator;
 		this.hibernateUtil = hibernateUtil;
 	}
-	
+
 	@Public
-	public void criar(Usuario usuario){
-		
+	public void criar(Usuario usuario) {
+
 		validarPreenchimento(usuario);
 		validarEmailExistente(usuario);
 		
+		criptografarSenha(usuario);
+
 		this.hibernateUtil.salvarOuAtualizar(usuario);
 	}
 
+	private void criptografarSenha(Usuario usuario) {
+		usuario.setSenha(GeradorDeMd5.converter(usuario.getSenha()));
+	}
+
 	private void validarPreenchimento(Usuario usuario) {
-		
-		if(Util.vazio(usuario.getEmail())){
+
+		if (Util.vazio(usuario.getEmail())) {
 			validator.add(new ValidationMessage("Preencha o campo email", "Erro"));
 		}
-		
-		if(Util.vazio(usuario.getNome())){
+
+		if (Util.vazio(usuario.getNome())) {
 			validator.add(new ValidationMessage("Preencha o campo nome", "Erro"));
 		}
-		
-		if(Util.vazio(usuario.getSenha())){
+
+		if (Util.vazio(usuario.getSenha())) {
 			validator.add(new ValidationMessage("Preencha o campo senha", "Erro"));
 		}
-		
+
 		validator.onErrorRedirectTo(this).telaLogin();
 	}
-	
-	public void validarEmailExistente(Usuario usuario){
-		
+
+	public void validarEmailExistente(Usuario usuario) {
+
 		Usuario usuarioFiltro = new Usuario();
 		usuarioFiltro.setEmail(usuario.getEmail());
-		
-		if(this.hibernateUtil.contar(usuarioFiltro, MatchMode.EXACT) > 0){
+
+		if (this.hibernateUtil.contar(usuarioFiltro, MatchMode.EXACT) > 0) {
 			validator.add(new ValidationMessage("Já existe um usuário com este email cadastrado", "Validacao"));
 		}
-		
-		validator.onErrorRedirectTo(this).telaLogin();		
+
+		validator.onErrorRedirectTo(this).telaLogin();
 	}
 
 	@Public
@@ -75,45 +82,30 @@ public class LoginController {
 	@Public
 	public void efetuarLogin(Usuario usuario) {
 
+		criptografarSenha(usuario);
+		
+		validarEmailLogin(usuario);
 
-//				InformacoesFixasUsuario informacoesFixasUsuario = usuarioBanco.obterInformacoesFixasUsuario();
-//
-//				if (Util.vazio(informacoesFixasUsuario)) {
-//
-//					if (!senhaInformada.equals("alabastrum")) {
-//
-//						codigoOuSenhaIncorretos();
-//					}
+		colocarUsuarioNaSessao(usuario);
 
+		result.redirectTo(HomeController.class).home();
+	}
 
-			colocarUsuarioNaSessao(usuario);
+	public void validarEmailLogin(Usuario usuario) {
 
-			result.redirectTo(HomeController.class).home();
+		Usuario usuarioFiltro = new Usuario();
+		usuarioFiltro.setEmail(usuario.getEmail());
+		usuarioFiltro.setSenha(usuario.getSenha());
+
+		if (this.hibernateUtil.contar(usuarioFiltro, MatchMode.EXACT) == 0) {
+			validator.add(new ValidationMessage("Login ou senha estão incorretos", "Validacao"));
 		}
 
-	private void codigoOuSenhaIncorretos() {
-
-		validator.add(new ValidationMessage("Código ou senha incorretos", "Erro"));
 		validator.onErrorRedirectTo(this).telaLogin();
 	}
 
 	private void colocarUsuarioNaSessao(Usuario usuario) {
 
-		Usuario usuarioFiltro = new Usuario();
-		usuarioFiltro.setId(usuario.getId());
-
-		usuario = (Usuario) this.hibernateUtil.selecionar(usuarioFiltro, MatchMode.EXACT);
-
-//		usuario.setInformacoesFixasUsuario(usuario.obterInformacoesFixasUsuario());
-
-		this.sessaoUsuario.login(usuario);
-	}
-
-	@Public
-	public void logout() {
-
-		sessaoUsuario.logout();
-
-		result.redirectTo(this).telaLogin();
+		this.sessaoUsuario.login((Usuario) this.hibernateUtil.selecionar(usuario, MatchMode.EXACT));
 	}
 }
