@@ -23,6 +23,7 @@
 		<property name="hibernate.c3p0.idle_test_period">600</property>
       
 		<mapping class="troca.modelo.Usuario" />
+		<mapping class="troca.modelo.Produto" />
 
 </session-factory>
 </hibernate-configuration>

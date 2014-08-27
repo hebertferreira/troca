@@ -65,4 +65,11 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>	
-    </body>
+
+	<c:if test="${not empty errors}">
+		<div class="alert alert-danger" role="alert">
+			<c:forEach items="${errors }" var="error">
+				<strong>${error.category }</strong> - ${error.message } <br>
+			</c:forEach>
+		</div>
+	</c:if>

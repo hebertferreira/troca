@@ -1,16 +1,5 @@
 <%@ include file="/base.jsp" %> 
-<%@ taglib uri="/tags/tags" prefix="tags"%>
 
-
-
-<body>
-	<c:if test="${not empty errors}">
-		<div class="alert alert-danger" role="alert">
-			<c:forEach items="${errors }" var="error">
-				<strong>${error.category }</strong> - ${error.message } <br>
-			</c:forEach>
-		</div>
-	</c:if>
 
 <div class="navbar navbar-default" id="navbar-submenu">
 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-1"><span class="glyphicon glyphicon-plus"></span></button>
@@ -22,9 +11,9 @@
 				<h4 class="modal-title">Modal Title</h4>
 				<div class="div-cadastrar-produto">
 
-			<form class="form-signin" action="<c:url value="/login/criar"/>" method="post">
+			<form class="form-signin" action="<c:url value="/produto/salvar"/>" method="post">
 
-				<label class="form-elem-1">Nome do Item</label> <input type="text" class="form-control" name="usuario.nome" placeholder="nome do item">
+				<label class="form-elem-1">Nome do Item</label> <input type="text" class="form-control" name="produto.nome" placeholder="nome do item">
 				
 				 <label class="form-elem-1">Tipo</label>
 				 <select class="form-control" name="produto.tipo">
@@ -52,43 +41,10 @@
 			</div>
 	</div>
 </div>
-<!-- 	<div class="box-left-produto"> -->
-<!-- 		<div class="div-cadastrar-produto"> -->
-
-<%-- 			<form class="form-signin" action="<c:url value="/login/criar"/>" method="post"> --%>
-
-<!-- 				<label class="form-elem-1">Nome do Item</label> <input type="text" class="form-control" name="usuario.nome" placeholder="nome do item"> -->
-				
-<!-- 				 <label class="form-elem-1">Tipo</label> -->
-<!-- 				 <select class="form-control" name="produto.tipo"> -->
-<!-- 				 <option value="Action Figure">Action Figure</option> -->
-<!-- 				 <option value="Card Colecionavel">Card Colecionavel</option> -->
-<!-- 				 <option value="HQ-Quadrinho">HQ-Quadrinho</option> -->
-<!-- 				 <option value="Jogo de Video-Game">Jogo de Video-Game</option> -->
-<!-- 				 </select> -->
-				 
-<!-- 				 <label class="form-elem-1">Estado:</label> -->
-<!-- 				 <select class="form-control" name="produto.estado"> -->
-<!-- 				 <option value="Zero KM">Zero KM</option> -->
-<!-- 				 <option value="Semi-novo">Semi-novo</option> -->
-<!-- 				 <option value="Usado">Usado</option> -->
-<!-- 				 </select> -->
-<!-- 				 <label class="form-elem-1">Breve Descrição</label> -->
-<!-- 				 <input type="text" class="form-control" name="produto.descricao" required> -->
-<!-- 				 <p></p> -->
-<!-- 				 <button type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button> -->
-
-<!-- 			</form> -->
-<!-- 		</div> -->
-	
-<!-- 	</div> -->
-
-	<div class="box-right-produto">
-
-	</div>
-
-
-
 </div>
-</body>
-</html>
+
+<c:if  test="${not empty produtos}">
+			<c:forEach items="${produtos}" var="produto">
+				${produto.nome} - ${produto.estado} - ${produto.tipo} - ${produto.descricao}  <br>
+			</c:forEach>
+	</c:if>

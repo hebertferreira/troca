@@ -38,6 +38,8 @@ public class LoginController {
 		criptografarSenha(usuario);
 
 		this.hibernateUtil.salvarOuAtualizar(usuario);
+		colocarUsuarioNaSessao(usuario);
+		result.redirectTo(ProdutoController.class).acessarProduto();
 	}
 
 	private void criptografarSenha(Usuario usuario) {
@@ -88,7 +90,7 @@ public class LoginController {
 
 		colocarUsuarioNaSessao(usuario);
 
-		result.redirectTo(HomeController.class).home();
+		result.redirectTo(ProdutoController.class).acessarProduto();
 	}
 
 	public void validarEmailLogin(Usuario usuario) {

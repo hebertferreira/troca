@@ -1,11 +1,15 @@
 package troca.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import troca.hibernate.Entidade;
 
 @Entity
-public class Produto {
+public class Produto implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -16,11 +20,14 @@ public class Produto {
 	private String tipo;
 	private String estado;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Usuario usuario;
+	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNome() {
@@ -46,6 +53,12 @@ public class Produto {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
