@@ -6,7 +6,7 @@
 <html lang="pt-br">
 	<head>
 		 <meta charset="utf-8">
-		<title>troca</title>
+		 <meta name="viewport" content="width=device-width, initial-scale=1">		 
 		<link type="text/css" href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" />
 		<link type="text/css" href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" />
 		<link type="text/css" href="<c:url value="/css/bootstrap-theme.min.css"/>" rel="stylesheet" />		
@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="<c:url value="/js/jquery-2.1.1.min.js"/>"></script>
 		<script type="text/javascript" src="<c:url value="/js/bootstrap.min.js"/>"></script>
 
+		<title>troca</title>
 	</head>
 
 	 <body>
@@ -37,7 +38,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Minha Coleção <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Meus itens</a></li>
+            <li><a href="<c:url value="/produto/acessarProduto" />">Meus itens</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li class="divider"></li>
@@ -48,7 +49,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Propostas</a></li>
         <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="<c:url value="/produto/pesquisarProduto" />" > Pesquisar Produtos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">

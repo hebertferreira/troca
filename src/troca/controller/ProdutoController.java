@@ -2,6 +2,7 @@ package troca.controller;
 
 import java.util.List;
 
+import troca.anotacoes.Public;
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Produto;
 import troca.sessao.SessaoUsuario;
@@ -58,5 +59,19 @@ public class ProdutoController {
 		}
 
 		validator.onErrorRedirectTo(this).acessarProduto();
+	}
+	
+	public void pesquisarProduto(String pesquisa){
+		
+		if(Util.preenchido(pesquisa)){
+			
+			Produto produtoFiltro = new Produto();
+			
+			produtoFiltro.setNome(pesquisa);
+			
+			List<Produto> produtos = this.hibernateUtil.buscar(produtoFiltro);
+			
+			this.result.include("produtos", produtos);
+		}
 	}
 }

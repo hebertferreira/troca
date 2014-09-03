@@ -26,17 +26,9 @@ padding-right: 15px;
 padding-left: 15px;
 }
 
-#lista-produto-itens{
-	width:22em;
-	height:18em;
+.lista-produto-itens{
 	border: 1px solid #ddd;
 	border-radius: 10px;
-	padding-left: 12px;
-	padding-right: 12px;
-	padding-bottom: 6px;
-	margin-left: 1em;
-	margin-right: 1em;
-	margin-bottom: 2em;
 }
 
 placeholder{
@@ -105,6 +97,10 @@ placeholder{
 	margin-top: -20px;
 }
 
-/* #botao-fire{ */
-/* 	float: right; */
-/* } */
+.exibicao-produto{
+	word-wrap: break-word;	
+}
+
+.botao-fire{
+ 	float: right;
+} 
