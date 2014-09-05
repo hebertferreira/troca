@@ -56,13 +56,9 @@
 				<p class="exibicao-produto">${produto.tipo}</p>
 				<p class="exibicao-produto">${produto.descricao}</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button"> <span
-						class="glyphicon glyphicon-search"></span></a> <a
-						class="btn btn-default" ><span
-						class="glyphicon glyphicon-wrench"></span></a> <a
-						class="btn btn-danger botao-fire" href="#" role="button">
-						<span class="glyphicon glyphicon-trash"></span>
-					</a>
+					<a class="btn btn-default" href="#" role="button"> <span class="glyphicon glyphicon-search"></span></a> 
+					<a class="btn btn-default"href="#"><span class="glyphicon glyphicon-wrench"></span></a> 
+					<a class="btn btn-danger botao-fire" href="<c:url value="/produto/deletarProduto/${produto.id}" /> " role="button"><span class="glyphicon glyphicon-trash"></span></a>
 			</div>
 		</c:forEach>
 	</div>

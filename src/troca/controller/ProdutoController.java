@@ -2,11 +2,12 @@ package troca.controller;
 
 import java.util.List;
 
-import troca.anotacoes.Public;
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Produto;
+import troca.modelo.Usuario;
 import troca.sessao.SessaoUsuario;
 import troca.util.Util;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -14,7 +15,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 public class ProdutoController {
-	
+
 	private SessaoUsuario sessaoUsuario;
 	private Result result;
 	private Validator validator;
@@ -28,25 +29,24 @@ public class ProdutoController {
 	}
 
 	public void acessarProduto() {
-		
+
 		Produto produtoFiltro = new Produto();
 		produtoFiltro.setUsuario(this.sessaoUsuario.getUsuario());
-		
+
 		List<Produto> produtos = this.hibernateUtil.buscar(produtoFiltro);
-		
+
 		this.result.include("produtos", produtos);
 	}
-
 
 	public void salvar(Produto produto) {
 
 		validarProduto(produto);
-		
+
 		produto.setUsuario(this.sessaoUsuario.getUsuario());
-		
+
 		hibernateUtil.salvarOuAtualizar(produto);
-		
-		result.forwardTo(ProdutoController.class).acessarProduto();
+
+		result.forwardTo(this).acessarProduto();
 	}
 
 	private void validarProduto(Produto produto) {
@@ -60,18 +60,33 @@ public class ProdutoController {
 
 		validator.onErrorRedirectTo(this).acessarProduto();
 	}
-	
-	public void pesquisarProduto(String pesquisa){
-		
-		if(Util.preenchido(pesquisa)){
-			
+
+	public void pesquisarProduto(String pesquisa) {
+
+		if (Util.preenchido(pesquisa)) {
+
 			Produto produtoFiltro = new Produto();
-			
+
 			produtoFiltro.setNome(pesquisa);
-			
+
 			List<Produto> produtos = this.hibernateUtil.buscar(produtoFiltro);
-			
+
 			this.result.include("produtos", produtos);
 		}
+
 	}
+
+	@Path("/produto/deletarProduto/{produto.id}")
+	public void deletarProduto(Produto produto) {
+
+		produto = this.hibernateUtil.selecionar(produto);
+
+		if (produto.getUsuario().getId() == this.sessaoUsuario.getUsuario().getId()) {
+
+			this.hibernateUtil.deletar(produto);
+
+		}
+		result.forwardTo(this).acessarProduto();
+	}
+
 }
