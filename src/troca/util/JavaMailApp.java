@@ -43,7 +43,7 @@ public class JavaMailApp extends Thread {
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication("alabastrumnotificacoes@gmail.com", "123456");
+				return new PasswordAuthentication("seu-email@gmail.com", "123456");
 			}
 		});
 
@@ -52,7 +52,7 @@ public class JavaMailApp extends Thread {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("alabastrumnotificacoes@gmail.com"));
+			message.setFrom(new InternetAddress("seu-email@gmail.com"));
 			message.setContent(mensagem, "text/html; charset=utf-8");
 
 			Address[] toUser = InternetAddress.parse("renanandrade_rj@hotmail.com, " + remetentes);
