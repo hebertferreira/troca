@@ -5,7 +5,7 @@
  					<input type="text" name="pesquisa" placeholder="pesquisa"> 
 					<button type="submit"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
-
+<br>
 <c:if test="${not empty produtos}">
 
 	<div class="row">
@@ -16,13 +16,8 @@
 				<p class="exibicao-produto">${produto.tipo}</p>
 				<p class="exibicao-produto">${produto.descricao}</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button"> <span
-						class="glyphicon glyphicon-search"></span></a> <a
-						class="btn btn-default" ><span
-						class="glyphicon glyphicon-wrench"></span></a> <a
-						class="btn btn-danger botao-fire" href="#" role="button">
-						<span class="glyphicon glyphicon-trash"></span>
-					</a>
+					<a class="btn btn-block btn-warning" href="<c:url value="/produto/criarProposta/${produto.id}" />" role="button">Criar Proposta</a> 
+					
 			</div>
 		</c:forEach>
 	</div>

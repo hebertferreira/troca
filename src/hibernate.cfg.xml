@@ -24,6 +24,8 @@
       
 		<mapping class="troca.modelo.Usuario" />
 		<mapping class="troca.modelo.Produto" />
+		<mapping class="troca.modelo.Proposta" />
+		
 
 </session-factory>
 </hibernate-configuration>
