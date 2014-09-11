@@ -1,13 +1,10 @@
 package troca.controller;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Produto;
-import troca.modelo.Proposta;
-import troca.sessao.SessaoGeral;
+import troca.service.ProdutoService;
 import troca.sessao.SessaoUsuario;
 import troca.util.Util;
 import br.com.caelum.vraptor.Path;
@@ -20,14 +17,12 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 public class ProdutoController {
 
 	private SessaoUsuario sessaoUsuario;
-	private SessaoGeral sessaoGeral;
 	private Result result;
 	private Validator validator;
 	private HibernateUtil hibernateUtil;
 
-	public ProdutoController(SessaoUsuario sessaoUsuario, SessaoGeral sessaoGeral, Result result, Validator validator, HibernateUtil hibernateUtil) {
+	public ProdutoController(SessaoUsuario sessaoUsuario, Result result, Validator validator, HibernateUtil hibernateUtil) {
 		this.sessaoUsuario = sessaoUsuario;
-		this.sessaoGeral = sessaoGeral;
 		this.result = result;
 		this.validator = validator;
 		this.hibernateUtil = hibernateUtil;
@@ -35,20 +30,7 @@ public class ProdutoController {
 
 	public void acessarProduto() {
 
-		buscarProdutosDoUsuario();
-	}
-
-	private void buscarProdutosDoUsuario() {
-
-		Produto produtoFiltro = new Produto();
-
-		// Captura o usuário que está usando para utilizar neste método
-		produtoFiltro.setUsuario(this.sessaoUsuario.getUsuario());
-
-		// busca os produtos do usuário capturado
-		List<Produto> produtos = this.hibernateUtil.buscar(produtoFiltro);
-
-		this.result.include("produtos", produtos);
+		this.result.include("produtos", new ProdutoService().buscarProdutosDoUsuario(this.sessaoUsuario.getUsuario(), this.hibernateUtil));
 	}
 
 	public void salvar(Produto produto) {
@@ -100,51 +82,5 @@ public class ProdutoController {
 
 		}
 		result.forwardTo(this).acessarProduto();
-	}
-
-	// Utilizara como referencia o ID_PRODUTO
-	@Path("/produto/criarProposta/{produto.id}")
-	public void criarProposta(Produto produto) {
-
-		// Utiliza como
-		// referencia de
-		// busca o produto
-		// passado no
-		// PRODUTO.ID da JSP
-		produto = this.hibernateUtil.selecionar(produto);
-		sessaoGeral.adicionar("produto", produto);
-
-		buscarProdutosDoUsuario();
-	}
-
-	public void enviarProposta(BigDecimal valor, List<Integer> produtosParaTroca) {
-
-		Proposta proposta = new Proposta();
-		proposta.setComprador(this.sessaoUsuario.getUsuario());
-		proposta.setVendedor(((Produto) this.sessaoGeral.getValor("produto")).getUsuario());
-		proposta.setProdutoLeiloado(((Produto) this.sessaoGeral.getValor("produto")));
-		proposta.setValor(valor);
-		
-		//Cria lista vazia de troca
-		List<Produto> itensDeTroca = new ArrayList<Produto>();
-
-		// Busca no banco os INTEGERS (idProduto) dos produtosParaTroca
-		for (Integer idProduto : produtosParaTroca) {
-
-			Produto produto = new Produto();
-			
-			//Escreve no setId o idProduto(INTEGER)
-			produto.setId(idProduto);
-
-		
-			produto = this.hibernateUtil.selecionar(produto);
-			
-			itensDeTroca.add(produto);
-		}
-		
-		//Proposta recebe os itens de troca
-		proposta.setProdutos(itensDeTroca);
-
-		this.hibernateUtil.salvarOuAtualizar(proposta);
 	}
 }

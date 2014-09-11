@@ -16,7 +16,7 @@
 				<p class="exibicao-produto">${produto.tipo}</p>
 				<p class="exibicao-produto">${produto.descricao}</p>
 				<p>
-					<a class="btn btn-block btn-warning" href="<c:url value="/produto/criarProposta/${produto.id}" />" role="button">Criar Proposta</a> 
+					<a class="btn btn-block btn-warning" href="<c:url value="/proposta/criarProposta/${produto.id}" />" role="button">Criar Proposta</a> 
 					
 			</div>
 		</c:forEach>

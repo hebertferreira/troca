@@ -20,35 +20,9 @@
 	 <body>
 		<nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="container-fluid">
-    
-    <!-- Trabalhando em modo de colapso -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Minha Coleção <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<c:url value="/produto/acessarProduto" />">Meus itens</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
       <ul class="nav navbar-nav">
-        <li><a href="#">Propostas</a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="<c:url value="/proposta/propostasRecebidas" />" > Propostas Recebidas </a></li>
         <li><a href="<c:url value="/produto/pesquisarProduto" />" > Pesquisar Produtos</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">

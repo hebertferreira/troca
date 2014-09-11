@@ -1,6 +1,6 @@
 <%@ include file="/base.jsp"%>
 
-<form action="<c:url value="/produto/enviarProposta" />"  >
+<form action="<c:url value="/proposta/enviarProposta" />"  >
 
 	<label>Valor</label><br>
 	<input type="number" name="valor"> <br>
