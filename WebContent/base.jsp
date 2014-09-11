@@ -22,6 +22,7 @@
     <div class="container-fluid">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+       <li><a href="<c:url value="/produto/acessarProduto" />" > Meus produtos </a></li>
         <li><a href="<c:url value="/proposta/propostasRecebidas" />" > Propostas Recebidas </a></li>
         <li><a href="<c:url value="/produto/pesquisarProduto" />" > Pesquisar Produtos</a></li>
       </ul>
