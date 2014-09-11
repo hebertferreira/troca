@@ -1,9 +1,12 @@
 package troca.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import troca.hibernate.Entidade;
@@ -22,6 +25,9 @@ public class Produto implements Entidade {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario usuario;
+
+	@ManyToMany(mappedBy = "produtos")
+	private List<Proposta> propostas;
 
 	public Integer getId() {
 		return id;
@@ -71,4 +77,11 @@ public class Produto implements Entidade {
 		this.usuario = usuario;
 	}
 
+	public List<Proposta> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(List<Proposta> propostas) {
+		this.propostas = propostas;
+	}
 }

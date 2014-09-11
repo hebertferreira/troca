@@ -1,14 +1,18 @@
 package troca.modelo;
 
 import java.math.BigDecimal;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import troca.hibernate.Entidade;
 
@@ -21,6 +25,7 @@ public class Proposta implements Entidade {
 
 	private BigDecimal valor;
 
+	private GregorianCalendar validadeProposta;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Produto produtoLeiloado;
 
@@ -30,8 +35,9 @@ public class Proposta implements Entidade {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario vendedor;
 
-	//@manytomany()
-	//private List<Produto> produtosDeTroca;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "proposta_produto", joinColumns = { @JoinColumn(name = "proposta_id") }, inverseJoinColumns = { @JoinColumn(name = "produto_id") })
+	private List<Produto> produtos;
 
 	public Integer getId() {
 		return id;
@@ -47,6 +53,14 @@ public class Proposta implements Entidade {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public GregorianCalendar getValidadeProposta() {
+		return validadeProposta;
+	}
+
+	public void setValidadeProposta(GregorianCalendar validadeProposta) {
+		this.validadeProposta = validadeProposta;
 	}
 
 	public Produto getProdutoLeiloado() {
@@ -73,4 +87,11 @@ public class Proposta implements Entidade {
 		this.vendedor = vendedor;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 }
