@@ -102,6 +102,11 @@ public class ProdutoController {
 	@Path("/produto/downloadImagem/{produto.id}")
 	public File foto(Produto produto) {
 
-		return new File(ProdutoService.PASTA_IMAGENS + produto.getId());
+		if (new File(ProdutoService.PASTA_IMAGENS + produto.getId()).exists()) {
+
+			return new File(ProdutoService.PASTA_IMAGENS + produto.getId());
+		}
+
+		return new File(ProdutoService.PASTA_IMAGENS + "Unknown.png");
 	}
 }
