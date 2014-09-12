@@ -104,3 +104,7 @@ placeholder{
 .botao-fire{
  	float: right;
 } 
+
+.imagem{
+	max-width: 100%;
+}

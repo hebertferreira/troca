@@ -8,6 +8,8 @@ import troca.modelo.Usuario;
 
 public class ProdutoService {
 
+	public static final String PASTA_IMAGENS = "/imagens-sistema-troca/";
+
 	public List<Produto> buscarProdutosDoUsuario(Usuario usuario, HibernateUtil hibernateUtil) {
 
 		Produto produtoFiltro = new Produto();

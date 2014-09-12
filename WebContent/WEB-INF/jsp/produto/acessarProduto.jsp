@@ -15,7 +15,7 @@
 					<div class="div-cadastrar-produto">
 
 						<form class="form-signin"
-							action="<c:url value="/produto/salvar"/>" method="post">
+							action="<c:url value="/produto/salvar"/>" method="post" enctype="multipart/form-data" >
 
 							<label class="form-elem-1">Nome do Item</label> <input
 								type="text" class="form-control" name="produto.nome"
@@ -33,6 +33,10 @@
 							</select> <label class="form-elem-1">Breve Descrição</label>
 							<textarea rows="3" cols="5" class="form-control"
 								name="produto.descricao" required></textarea>
+								
+							<label class="form-elem-1">Imagem</label> 
+							<input type="file" name="imagem" >	
+								
 							<p></p>
 							<button type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button>
 
@@ -55,10 +59,10 @@
 				<p class="exibicao-produto">${produto.estado}</p>
 				<p class="exibicao-produto">${produto.tipo}</p>
 				<p class="exibicao-produto">${produto.descricao}</p>
-				<p>
-					<a class="btn btn-default" href="#" role="button"> <span class="glyphicon glyphicon-search"></span></a> 
-					<a class="btn btn-default"href="#"><span class="glyphicon glyphicon-wrench"></span></a> 
-					<a class="btn btn-danger botao-fire" href="<c:url value="/produto/deletarProduto/${produto.id}" /> " role="button"><span class="glyphicon glyphicon-trash"></span></a>
+				<a class="btn btn-default" href="#" role="button"> <span class="glyphicon glyphicon-search"></span></a> 
+				<a class="btn btn-default"href="#"><span class="glyphicon glyphicon-wrench"></span></a> 
+				<a class="btn btn-danger botao-fire" href="<c:url value="/produto/deletarProduto/${produto.id}" /> " role="button"><span class="glyphicon glyphicon-trash"></span></a>
+				<img class="imagem" src="<c:url value='/produto/downloadImagem/${produto.id}' /> ">
 			</div>
 		</c:forEach>
 	</div>
