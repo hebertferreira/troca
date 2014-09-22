@@ -1,10 +1,7 @@
 <%@ include file="/base.jsp"%>
 
 
-					<form action="<c:url value="/produto/pesquisarProduto"/>" method="post">
- 					<input type="text" name="pesquisa" placeholder="pesquisa"> 
-					<button type="submit"><span class="glyphicon glyphicon-search"></span></button>
-					</form>
+					
 <br>
 <c:if test="${not empty produtos}">
 

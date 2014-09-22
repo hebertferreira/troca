@@ -22,16 +22,16 @@
     <div class="container-fluid">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-       <li><a href="<c:url value="/produto/acessarProduto" />" > Meus produtos </a></li>
+       <li><a href="<c:url value="/produto/acessarProduto" />" > Meus Itens </a></li>
         <li><a href="<c:url value="/proposta/propostasRecebidas" />" > Propostas Recebidas </a></li>
         <li><a href="<c:url value="/produto/pesquisarProduto" />" > Pesquisar Produtos</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
+      
+      <form class="navbar-form navbar-right" action="<c:url value="/produto/pesquisarProduto"/>" method="post">
+ 					<input class="form-control" type="text" name="pesquisa" placeholder="pesquisa"> 
+					<button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+        
+        <a href="#" class="dropdown-toggle-lg" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="#">Editar Perfil</a></li>
             <li class="divider"></li>

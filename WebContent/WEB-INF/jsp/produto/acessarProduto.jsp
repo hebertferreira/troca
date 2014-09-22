@@ -21,13 +21,14 @@
 								type="text" class="form-control" name="produto.nome"
 								placeholder="nome do item"> <label class="form-elem-1">Tipo</label>
 							<select class="form-control" name="produto.tipo">
-								<option value="Action Figure">Action Figure</option>
-								<option value="Card Colecionavel">Card Colecionavel</option>
-								<option value="HQ-Quadrinho">HQ-Quadrinho</option>
-								<option value="Jogo de Video-Game">Jogo de Video-Game</option>
+								<option value="actionFigure">Action Figure</option>
+								<option value="cardColecionavel">Card Colecionavel / Figurinhas</option>
+								<option value="hqQuadrinho">HQ-Quadrinho / Álbum</option>
+								<option value="jogoVideoGame">Jogo de Video-Game</option>
+								<option value="numismatica">Medalha / Moeda</option>
 							</select> <label class="form-elem-1">Estado:</label> <select
 								class="form-control" name="produto.estado">
-								<option value="Zero KM">Zero KM</option>
+								<option value="Zero KM">Novo na caixa</option>
 								<option value="Semi-novo">Semi-novo</option>
 								<option value="Usado">Usado</option>
 							</select> <label class="form-elem-1">Breve Descrição</label>
@@ -55,14 +56,16 @@
 	<div class="row">
 		<c:forEach items="${produtos}" var="produto">
 			<div class="col-md-3 lista-produto-itens">
+			<div class="col-lg-11 lista-produto-itens">
 				<h2>${produto.nome}</h2>
-				<p class="exibicao-produto">${produto.estado}</p>
-				<p class="exibicao-produto">${produto.tipo}</p>
-				<p class="exibicao-produto">${produto.descricao}</p>
+				<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;" src="<c:url value='/produto/downloadImagem/${produto.id}' /> ">
+				<label class="form-elem-1">Estado do Item:</label>${produto.estado}<br>
+				<label class="form-elem-1">Tipo de Item:</label>${produto.tipo}<br>
+				<label class="form-elem-1">Breve Descrição:</label>${produto.descricao}<br>
 				<a class="btn btn-default" href="#" role="button"> <span class="glyphicon glyphicon-search"></span></a> 
 				<a class="btn btn-default"href="#"><span class="glyphicon glyphicon-wrench"></span></a> 
 				<a class="btn btn-danger botao-fire" href="<c:url value="/produto/deletarProduto/${produto.id}" /> " role="button"><span class="glyphicon glyphicon-trash"></span></a>
-				<img class="imagem" src="<c:url value='/produto/downloadImagem/${produto.id}' /> ">
+			</div>
 			</div>
 		</c:forEach>
 	</div>
