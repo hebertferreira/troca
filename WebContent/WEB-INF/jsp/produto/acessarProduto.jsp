@@ -57,7 +57,7 @@
 		<c:forEach items="${produtos}" var="produto">
 			<div class="col-md-3 lista-produto-itens">
 			<div class="col-lg-11 lista-produto-itens">
-				<h2>${produto.nome}</h2>
+				<h2  data-toggle="tooltip" data-placement="top" title="${produto.nome}">${produto.nome}</h2>
 				<img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;" src="<c:url value='/produto/downloadImagem/${produto.id}' /> ">
 				<label class="form-elem-1">Estado do Item:</label>${produto.estado}<br>
 				<label class="form-elem-1">Tipo de Item:</label>${produto.tipo}<br>

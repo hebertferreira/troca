@@ -10,12 +10,17 @@
 <script type="text/javascript" 	src="<c:url value="/js/jquery-2.1.1.min.js"/>"></script>
 <style>
 body {
-	background-color: rgb(203,230,232);
+	background: url("img/Market.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 </style>
 </head>
 
 <body>
+
 	<c:if test="${not empty errors}">
 		<div class="alert alert-danger" role="alert">
 			<c:forEach items="${errors }" var="error">
