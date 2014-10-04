@@ -23,7 +23,9 @@
       <ul class="nav navbar-nav">
        <li><a href="<c:url value="/produto/acessarProduto" />" > Meus Itens </a></li>
         <li><a href="<c:url value="/proposta/propostasRecebidas" />" > Propostas Recebidas </a></li>
-        <li><a href="<c:url value="/produto/pesquisarProduto" />" > Pesquisar Produtos</a></li>
+        <li><a href="<c:url value="/proposta/propostasRealizadas" />" > Propostas Realizadas </a></li>
+        
+        
       </ul>
       
       <form class="navbar-form navbar-right" action="<c:url value="/produto/pesquisarProduto"/>" method="post">
@@ -48,3 +50,7 @@
 			</c:forEach>
 		</div>
 	</c:if>
+	
+		<c:if test="${not empty sucesso}">
+	 		<div class="alert alert-success">${sucesso}</div>
+	 	</c:if>

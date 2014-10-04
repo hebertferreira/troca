@@ -35,6 +35,8 @@ public class Proposta implements Entidade {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario vendedor;
 
+	private String statusProposta;
+	
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "proposta_produto", joinColumns = { @JoinColumn(name = "proposta_id") }, inverseJoinColumns = { @JoinColumn(name = "produto_id") })
 	private List<Produto> produtos;
@@ -93,5 +95,13 @@ public class Proposta implements Entidade {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public String getStatusProposta() {
+		return statusProposta;
+	}
+
+	public void setStatusProposta(String statusProposta) {
+		this.statusProposta = statusProposta;
 	}
 }

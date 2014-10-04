@@ -27,7 +27,7 @@ padding-left: 15px;
 }
 
 .lista-produto-itens{
-	border: 1px solid #ddd;
+/* 	border: 1px solid #ddd; */
 	border-radius: 10px;
 }
 
@@ -45,7 +45,7 @@ placeholder{
 	float:left;
 	width: 55%;
 	height: 500px;
-	background-color: yellow;
+	background-color: transparente;
 	margin-top:5%;
 	margin-left: 5%;
 	border-radius: 14px;
@@ -92,7 +92,7 @@ placeholder{
 	
 }
 .div-cadastrar-produto{
-	border: 1px solid gray;
+/* 	border: 1px solid gray; */
 	border-radius: 14px;
 	padding-left: 12px;
 	padding-right: 12px;

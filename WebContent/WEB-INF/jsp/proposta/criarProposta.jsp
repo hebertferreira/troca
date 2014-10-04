@@ -3,7 +3,7 @@
 <form action="<c:url value="/proposta/enviarProposta" />"  >
 
 	<label>Valor</label><br>
-	<input type="number" name="valor"> <br>
+	<input type="number" name="valor" value="0"> <br>
 	<label>Produtos para Troca</label><br>
 	
 	<c:forEach items="${produtos}" var="produto" >

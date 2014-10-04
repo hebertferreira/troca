@@ -10,6 +10,7 @@ import troca.modelo.Proposta;
 import troca.service.ProdutoService;
 import troca.sessao.SessaoGeral;
 import troca.sessao.SessaoUsuario;
+import troca.util.Util;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -40,33 +41,38 @@ public class PropostaController {
 	}
 
 	public void enviarProposta(BigDecimal valor, List<Integer> produtosParaTroca) {
-
+		
 		Proposta proposta = new Proposta();
 		proposta.setComprador(this.sessaoUsuario.getUsuario());
 		proposta.setVendedor(((Produto) this.sessaoGeral.getValor("produto")).getUsuario());
 		proposta.setProdutoLeiloado(((Produto) this.sessaoGeral.getValor("produto")));
 		proposta.setValor(valor);
+		proposta.setStatusProposta("Aguardando");
 
 		// Cria lista vazia de troca
 		List<Produto> itensDeTroca = new ArrayList<Produto>();
 
-		// Busca no banco os INTEGERS (idProduto) dos produtosParaTroca
-		for (Integer idProduto : produtosParaTroca) {
+		if (Util.preenchido(produtosParaTroca)) {
+			// Busca no banco os INTEGERS (idProduto) dos produtosParaTroca
+			for (Integer idProduto : produtosParaTroca) {
 
-			Produto produto = new Produto();
+				Produto produto = new Produto();
 
-			// Escreve no setId o idProduto(INTEGER)
-			produto.setId(idProduto);
+				// Escreve no setId o idProduto(INTEGER)
+				produto.setId(idProduto);
 
-			produto = this.hibernateUtil.selecionar(produto);
+				produto = this.hibernateUtil.selecionar(produto);
 
-			itensDeTroca.add(produto);
+				itensDeTroca.add(produto);
+			}
+
+			// Proposta recebe os itens de troca
+			proposta.setProdutos(itensDeTroca);
 		}
 
-		// Proposta recebe os itens de troca
-		proposta.setProdutos(itensDeTroca);
-
 		this.hibernateUtil.salvarOuAtualizar(proposta);
+
+		result.forwardTo(this).propostasRealizadas();
 	}
 
 	public void propostasRecebidas() {
@@ -76,12 +82,45 @@ public class PropostaController {
 
 		this.result.include("propostas", this.hibernateUtil.buscar(propostaFiltro));
 	}
-	
+
 	@Path("/proposta/produtosDaProposta/{proposta.id}")
 	public void produtosDaProposta(Proposta proposta) {
 
 		proposta = this.hibernateUtil.selecionar(proposta);
-		
+
 		this.result.include("produtosDaProposta", proposta.getProdutos());
 	}
+
+	public void propostasRealizadas() {
+
+		Proposta propostaFiltro = new Proposta();
+		propostaFiltro.setComprador(this.sessaoUsuario.getUsuario());
+
+		this.result.include("propostas", this.hibernateUtil.buscar(propostaFiltro));
+	}
+
+	@Path("/proposta/aceitar/{proposta.id}")
+	public void aceitar(Proposta proposta) {
+
+		proposta = this.hibernateUtil.selecionar(proposta);
+
+		Proposta propostaFiltro = new Proposta();
+		propostaFiltro.setProdutoLeiloado(proposta.getProdutoLeiloado());
+
+		List<Proposta> propostas = this.hibernateUtil.buscar(propostaFiltro);
+
+		for (Proposta propostaIteracao : propostas) {
+			propostaIteracao.setStatusProposta("Rejeitado");
+		}
+		this.hibernateUtil.salvarOuAtualizar(propostas);
+
+		proposta.setStatusProposta("Aceito");
+		this.hibernateUtil.salvarOuAtualizar(proposta);
+
+		result.include("sucesso","Proposta aceita com sucesso");
+		
+		result.forwardTo(this).propostasRecebidas();
+
+	}
+
 }

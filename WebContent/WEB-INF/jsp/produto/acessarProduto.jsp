@@ -22,13 +22,15 @@
 								placeholder="nome do item"> <label class="form-elem-1">Tipo</label>
 							<select class="form-control" name="produto.tipo">
 								<option value="actionFigure">Action Figure</option>
-								<option value="cardColecionavel">Card Colecionavel / Figurinhas</option>
-								<option value="hqQuadrinho">HQ-Quadrinho / Álbum</option>
-								<option value="jogoVideoGame">Jogo de Video-Game</option>
-								<option value="numismatica">Medalha / Moeda</option>
+								<option value="Card Colecionavel">Card Colecionavel</option>
+								<option value="Figurinha">Figurinha</option>								
+								<option value="Quadrinho">HQ-Quadrinho</option>
+								<option value="Album">Álbum</option>
+								<option value="VideoGame">Jogo de Video-Game</option>
+								<option value="numismatica">Medalha ou Moeda</option>
 							</select> <label class="form-elem-1">Estado:</label> <select
 								class="form-control" name="produto.estado">
-								<option value="Zero KM">Novo na caixa</option>
+								<option value="Novo na caixa">Novo na caixa</option>
 								<option value="Semi-novo">Semi-novo</option>
 								<option value="Usado">Usado</option>
 							</select> <label class="form-elem-1">Breve Descrição</label>
