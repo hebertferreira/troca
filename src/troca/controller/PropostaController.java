@@ -72,6 +72,8 @@ public class PropostaController {
 
 		this.hibernateUtil.salvarOuAtualizar(proposta);
 
+		result.include("sucesso","Proposta enviada com sucesso");
+		
 		result.forwardTo(this).propostasRealizadas();
 	}
 

@@ -24,7 +24,7 @@ body {
 	<c:if test="${not empty errors}">
 		<div class="alert alert-danger" role="alert">
 			<c:forEach items="${errors }" var="error">
-				<strong>${error.category }</strong> - ${error.message } <br>
+				<label class="form-elem-1" id="msg-style">${error.category } - ${error.message }</label> <br>
 			</c:forEach>
 		</div>
 	</c:if>

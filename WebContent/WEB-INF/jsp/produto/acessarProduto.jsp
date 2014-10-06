@@ -2,10 +2,7 @@
 
 
 <div class="navbar navbar-default" id="navbar-submenu">
-	<button class="btn btn-primary" data-toggle="modal"
-		data-target="#modal-1">
-		<span class="glyphicon glyphicon-plus"></span>
-	</button>
+	<button class="btn btn-primary" data-toggle="modal"	data-target="#modal-1">Adicionar Item</button>
 	<div class="modal" id="modal-1" tabindex="-1" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">

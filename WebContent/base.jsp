@@ -34,9 +34,9 @@
         
         <a href="#" class="dropdown-toggle-lg" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Editar Perfil</a></li>
+            <li><a href="../../../../telaLogin.jsp">Editar Perfil</a></li>
             <li class="divider"></li>
-            <li><a href="#">Sair</a></li>
+            <li><a href="<c:url value="/produto/sair" />">Sair</a></li>
           </ul>
       </form>
     </div><!-- /.navbar-collapse -->
@@ -52,5 +52,5 @@
 	</c:if>
 	
 		<c:if test="${not empty sucesso}">
-	 		<div class="alert alert-success">${sucesso}</div>
+	 		<div class="alert alert-success" id="msg-style"><label class="form-elem-1">${sucesso}</label></div>
 	 	</c:if>

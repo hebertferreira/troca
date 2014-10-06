@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.hibernate.criterion.MatchMode;
 
 import troca.hibernate.HibernateUtil;
 import troca.modelo.Produto;
@@ -50,6 +51,8 @@ public class ProdutoController {
 
 		salvarImagemNoDisco(produto, imagem);
 
+		result.include("sucesso","Item salvo com sucesso");
+		
 		result.forwardTo(this).acessarProduto();
 	}
 
@@ -96,7 +99,10 @@ public class ProdutoController {
 			this.hibernateUtil.deletar(produto);
 
 		}
+		result.include("sucesso","Produto removido com sucesso");
+		
 		result.forwardTo(this).acessarProduto();
+		
 	}
 
 	@Path("/produto/downloadImagem/{produto.id}")
@@ -107,6 +113,11 @@ public class ProdutoController {
 			return new File(ProdutoService.PASTA_IMAGENS + produto.getId());
 		}
 
-		return new File(ProdutoService.PASTA_IMAGENS + "Unknown.png");
+		return new File(ProdutoService.PASTA_IMAGENS + "Unknown3.png");
+	}
+	
+	public void sair(){
+		
+		result.redirectTo(LoginController.class).telaLogin();
 	}
 }

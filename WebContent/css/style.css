@@ -1,3 +1,18 @@
+body {
+	background: rgb(247,247,185);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#msg-style{
+	font-style: oblique;
+}
+
+#msg-style label{
+	padding-left: 40%;
+}
 
 @media (min-width: 1200px)
 .col-lg-4 {
