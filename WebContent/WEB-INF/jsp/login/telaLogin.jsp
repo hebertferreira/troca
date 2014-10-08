@@ -30,7 +30,11 @@ body {
 	</c:if>
 
 
-	<div class="box-left"></div>
+	<div class="box-left">
+		<h1>Bem vindo ao Trocafacil</h1>
+		<br>
+		<p>Esse sistema foi desenvolvido para colecionadores e entusiatas que gostam de trocar, leiloar e compartilhar itens colecionáveis.</p>
+	</div>
 
 	<div class="box-right">
 		<div class="div-logar">
@@ -59,7 +63,7 @@ body {
 					name="usuario.nome" placeholder="Nome e sobrenome">
 				
 				 <label class="form-elem-1">Email:</label>
-				<input type="text" class="form-control" name="usuario.email" placeholder="Email address">
+				<input type="email" class="form-control" name="usuario.email" placeholder="Email address" required>
 				 <label class="form-elem-1">Senha:</label> <input
 					type="password" class="form-control" name="usuario.senha" placeholder="Password" required>
 				<p></p>

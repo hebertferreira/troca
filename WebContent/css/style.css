@@ -1,5 +1,5 @@
 body {
-	background: rgb(247,247,185);
+	background: white;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -64,6 +64,26 @@ placeholder{
 	margin-top:5%;
 	margin-left: 5%;
 	border-radius: 14px;
+}
+
+.box-left{
+
+}
+
+.box-left h1{
+	color: white;
+	font-family: arial;
+	padding-left: 4em;	
+}
+
+.box-left p{
+	color: white;
+	font-family: arial;
+	font-size: 21px;
+	text-shadow:none;
+	padding-left: 2em;
+	padding-right: 4em;
+	line-height: 31px;
 	
 }
 
@@ -76,7 +96,7 @@ placeholder{
 	
 	}
 .div-logar{
-	border: 1px solid gray;
+	border: 1px solid white;
 	border-radius: 14px;
 	padding-left: 12px;
 	padding-right: 12px;
@@ -84,12 +104,14 @@ placeholder{
 }
 
 .div-cadastrar{
-	border: 1px solid gray;
+	border: 1px solid white;
 	border-radius: 14px;
 	padding-left: 12px;
 	padding-right: 12px;
 	padding-bottom: 6px;
 }
+
+
 .box-left-produto{
 	float:left;
 	width: 20%;	
@@ -115,7 +137,7 @@ placeholder{
 	padding-top: 6px;
 }
 
-#navbar-submenu{
+#navbar-{
 	margin-top: -20px;
 }
 
@@ -130,3 +152,9 @@ placeholder{
 .imagem{
 	max-width: 100%;
 }
+
+.navbar-inverse .navbar-nav>li>a{
+	color: yellow;
+	font-weight: bold;
+}
+

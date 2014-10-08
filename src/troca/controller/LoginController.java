@@ -1,5 +1,8 @@
 package troca.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.hibernate.criterion.MatchMode;
 
 import troca.anotacoes.Public;
@@ -33,6 +36,7 @@ public class LoginController {
 	public void criar(Usuario usuario) {
 
 		validarPreenchimento(usuario);
+//		validaEmailCorreto(usuario);
 		validarEmailExistente(usuario);
 		
 		criptografarSenha(usuario);
@@ -41,6 +45,29 @@ public class LoginController {
 		colocarUsuarioNaSessao(usuario);
 		result.redirectTo(ProdutoController.class).acessarProduto();
 	}
+
+//	private void validaEmailCorreto(Usuario usuario) {
+//		
+//		Usuario usuarioFiltro = new Usuario();
+//		
+//		return verificaFormato(usuarioFiltro.getEmail(),".+@.+\\.[a-z]");
+//		
+//	}
+//
+//	private static boolean verificaFormato(String email, String formato) {
+//		Pattern padrao = Pattern.compile(formato);
+//		
+//		Matcher pesquisa = padrao.matcher(email);
+//		
+//		if(pesquisa.matches()){
+//			
+//			return true;
+//			
+//		}else{
+//			
+//			return false;
+//		}
+//	}
 
 	private void criptografarSenha(Usuario usuario) {
 		usuario.setSenha(GeradorDeMd5.converter(usuario.getSenha()));
