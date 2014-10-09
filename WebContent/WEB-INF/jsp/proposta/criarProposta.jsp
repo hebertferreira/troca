@@ -11,6 +11,7 @@
 	<c:forEach items="${produtos}" var="produto" >
 		<input type="checkbox" class="checkbox-inline" name="produtosParaTroca" value="${produto.id}">
 		 <label class="form-elem-1">${produto.nome}</label><br>
+		 
 	</c:forEach>
 		<button type="submit">Enviar Proposta</button>
 </form>

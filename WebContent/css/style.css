@@ -67,17 +67,17 @@ placeholder{
 }
 
 .box-left{
-
+	opacity:0.8;
 }
 
 .box-left h1{
-	color: white;
+	color: black;
 	font-family: arial;
 	padding-left: 4em;	
 }
 
 .box-left p{
-	color: white;
+	color: black;
 	font-family: arial;
 	font-size: 21px;
 	text-shadow:none;
